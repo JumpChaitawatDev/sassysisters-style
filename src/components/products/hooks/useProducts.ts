@@ -8,10 +8,16 @@ type UserType = {
   username: string;
   password: string;
 };
+export type PageType = "list" | "add" | "edit";
 const useProducts = (props: useProductsProps) => {
   const [users, setUsers] = useState<any[]>([]);
+  const [page, setPage] = useState<PageType>("list");
 
   const usersStore = firebase.firestore().collection("users");
+
+  const hahdleChangePage = (page: PageType) => {
+    setPage(page);
+  };
 
   const getUsers = () => {
     usersStore.onSnapshot((query) => {
@@ -69,9 +75,11 @@ const useProducts = (props: useProductsProps) => {
 
   return {
     users,
+    page,
     handleAddUser,
     deleteUser,
     updateUser,
+    hahdleChangePage,
   };
 };
 export default useProducts;

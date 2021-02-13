@@ -1,5 +1,5 @@
-import { createMuiTheme } from "@material-ui/core/styles";
-import { grey, purple, deepPurple } from "@material-ui/core/colors";
+import {createMuiTheme} from "@material-ui/core/styles";
+import {grey, purple, deepPurple} from "@material-ui/core/colors";
 declare module "@material-ui/core/styles/createMuiTheme" {
   interface Theme {}
   interface ThemeOptions {}
@@ -20,7 +20,7 @@ const theme = createMuiTheme({
       light: "#bdd790",
     },
     text: {
-      primary: "#546e7a",
+      primary: "rgba(34, 27, 45, 0.8)",
     },
   },
 
