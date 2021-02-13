@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import initializeFirebase from "./firebase/init";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 import Home from "./components/home/views/home";
 import Dashboard from "./components/dashboard/views/dashboard";
@@ -15,19 +15,26 @@ import Container from "./layouts/views/container";
 function App() {
   initializeFirebase();
 
+  const genNav = (ComponentItem: React.FC) => {
+    return (
+      <>
+        <Nav />
+        <ComponentItem />
+      </>
+    );
+  };
+
   return (
     <div>
       <Router>
         <div>
-          <Nav />
           <Switch>
             <Container>
-              <Route exact path="/" component={Home} />
-              <Route path="/dashboard" component={Dashboard} />
-              <Route path="/orders" component={Orders} />
-              <Route path="/products" component={Products} />
-              {/* <Route path="/management" component={Products} /> */}
-              <Route path="/report" component={Report} />
+              <Route exact path="/" component={() => genNav(Home)} />
+              <Route path="/dashboard" component={() => genNav(Dashboard)} />
+              <Route path="/orders" component={() => genNav(Orders)} />
+              <Route path="/products" component={() => genNav(Products)} />
+              <Route path="/report" component={() => genNav(Report)} />
             </Container>
           </Switch>
         </div>
